@@ -6,14 +6,15 @@ from submit.models import Submit
 from problem.forms import UploadFileForm
 from os import system
 
-# Create your views here.
 
+#METHOD takes user solution, problem object and user object
+#It runs user solution on problem testdata and compares with correct output
 def check_solution(sol, problem, user):
     out_file = "check/" + str(user.id) + ".out"
-    system("python3 " + str(sol) + " < " + str(problem.test_in) + " > " + out_file)
+    system("python3 " + str(sol) + " < " + str(problem.test_in) + " > " + out_file) #running user solution
     out = open(out_file, "r")
     ans = open(str(problem.test_out), "r")
-    return out.readline() == ans.readline()
+    return out.readline() == ans.readline()#Return true if user gives correct output
 
 def problem(request, problem_id):
     verdict = ""
@@ -27,9 +28,9 @@ def problem(request, problem_id):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             file = request.FILES['file']
-            submit = Submit(sol=file, verdict="", user=request.user)
+            submit = Submit(sol=file, verdict="", user=request.user) # Create new submit object
             submit.save()
-            if (check_solution(submit.sol, problem, request.user)):
+            if (check_solution(submit.sol, problem, request.user)): #checking user solution on problem
                 verdict = "ACCEPTED, GOOD JOB!"
             else:
                 verdict = "WRONG ANSWER, TRY AGAIN.."
