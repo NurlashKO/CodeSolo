@@ -14,7 +14,7 @@ def check_solution(sol, problem, user):
     system("python3 " + str(sol) + " < " + str(problem.test_in) + " > " + out_file) #running user solution
     out = open(out_file, "r")
     ans = open(str(problem.test_out), "r")
-    return out.readline() == ans.readline()#Return true if user gives correct output
+    return out.readlines() == ans.readlines()#Return true if user gives correct output
 
 def problem(request, problem_id):
     verdict = ""
