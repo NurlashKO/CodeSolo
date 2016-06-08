@@ -1,0 +1,56 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    {% if verict != "" %}
+        <div class="info">
+            <h1 class="text-center">{{ verdict }}</h1>
+        </div>
+    {% endif %}
+
+<div class="container">
+    <div class="info">
+        <h1 class="text-center"><h1 class="text-center">{{ problem.name }}</h1></h1>
+        <p class="lead text-center">{{ problem.statement }}</p>
+    </div>
+</div>
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Input</h3>
+  </div>
+  <div class="panel-body">
+    {{problem.in_example}}
+  </div>
+</div>
+</div>
+
+<div class="container">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Output</h3>
+  </div>
+  <div class="panel-body">
+    {{problem.out_example}}
+  </div>
+</div>
+</div>
+
+    <div class="row">
+        <div class="col-sm-offset-4 col-sm-4" style="margin-top: 70px">
+            <form role="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="image">Solution:</label>
+                    <input id="image" type="file" class="" name="file">
+                </div>
+
+            <button type="submit" class="btn btn-info">Submit</button>
+            <a href="{% url "index" %}" class="btn btn-default">Back</a>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

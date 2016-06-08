@@ -1,0 +1,47 @@
+{% extends template %}
+
+{% block title %}
+    CodeSolo
+{% endblock%}
+
+
+{% block content %}
+
+<section class="bg-1 text-center">
+    <div class="bg-content">
+        <h1 class="">CodeSolo</h1>
+        <p class="lead">Your algorithm knowledge</p>
+    </div>
+</section>
+<!--/parallax 1-->
+<div class="divider"></div>
+<div class="container">
+    <div class="info">
+        <h1 class="text-center">About</h1>
+        <p class="lead">This platform made to help big companies make algorithmic tasks for their workers and we do out best to achive this goal !</p>
+    </div>
+</div>
+
+<div class="divider"></div>
+<div class="container">
+    <div class="info">
+        <h1 class="text-center">Choose problem</h1>
+    </div>
+</div>
+
+<div class="container">
+<div class="list-group">
+  {% for problem in problems %}
+  <a href="/problem/{{problem.id}}" class="list-group-item">
+    <h4 class="list-group-item-heading">{{ problem.name }}</h4>
+    <p class="list-group-item-text"> {{ problem.statement }}</p>
+  </a>
+  {% endfor %}
+</div>
+</div>
+
+<!--/container-->
+<div class="divider"></div>
+
+
+{% endblock %}
